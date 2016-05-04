@@ -1,0 +1,54 @@
+﻿@model TestTask.Models.Car
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html ng-app="carPage">
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>CarView</title>
+    <script src="~/scripts/angular.min.js"></script>
+    <script src="~/scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/scripts/ViewScripts/Car.js"></script>
+</head>
+<body ng-controller="carController" id="wrap">
+    <div>
+        <text>Редактируем автомобиль</text> 
+        <h1>Car Info</h1>
+        <h1 id="carId" hidden="hidden">@ViewBag.id</h1>
+        <form name="carForm" novalidate ng-submit="submit()">
+            <div>
+                <label>Id</label>
+                <input type="text" name="id" ng-model="car.Id" required />
+            </div>
+
+            <div>
+                <label>DriverId</label>
+                <select name="driverId" ng-model="car.DriverId">
+                    <option ng-repeat="driver in drivers" value="{{driver.Id}}" ng-selected="driver.Id == car.DriverId">{{driver.Name}}</option>
+                </select>
+            </div>
+
+            <div>
+                <label>Description</label>
+                <input type="text" name="description" ng-model="car.Description" required />
+            </div>
+
+            <div>
+                <label>YearOfCreated</label>
+                <input type="text" name="yearOfCreated" ng-model="car.YearOfCreated" required />
+            </div>
+
+            <input type="submit" value="Save" ng-disabled="carForm.$invalid">
+        </form>
+    </div>
+    <div>
+        <button onclick="revert()">Revert</button>
+        <button onclick="deleteCar()">Delete</button>
+        <button onclick="cancel()">Cancel</button> 
+    </div>
+
+</body>
+</html>

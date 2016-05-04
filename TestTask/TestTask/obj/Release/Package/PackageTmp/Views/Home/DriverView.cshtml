@@ -1,0 +1,43 @@
+﻿@model TestTask.Models.Driver
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html ng-app="driverPage">
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>DriverView</title>
+    <script src="~/scripts/angular.min.js"></script>
+    <script src="~/scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/scripts/ViewScripts/Driver.js"></script>
+</head>
+<body ng-controller="driverController" id="wrap">
+    <div> 
+        <text>Редактируем водителя</text>
+        <h1>Driver Info</h1>
+        <h1 id="driverId" hidden="hidden">@ViewBag.id</h1>
+        <form name="driverForm" novalidate ng-submit="submit()">
+            <div>
+                <label>Id</label>
+                <input type="text" name="id" ng-model="driver.Id" required />
+            </div>
+
+            <div>
+                <label>Name</label>
+                <input type="text" name="name" ng-model="driver.Name" required />
+            </div>
+
+            <input type="submit" value="Save" ng-disabled="driverForm.$invalid">
+        </form>
+    </div>
+    <div>
+        <button onclick="revert()">Revert</button>
+        <button onclick="deleteDriver()">Delete</button>
+        <button onclick="cancel()">Cancel</button>
+    </div>
+
+</body>
+</html>

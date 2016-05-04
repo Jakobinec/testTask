@@ -1,0 +1,58 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html ng-app="myapp">
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Main page</title>
+    <script src="~/scripts/angular.min.js"></script>
+    <script src="~/scripts/ViewScripts/startPage.js"></script>
+    <link href="~/Content/Site.css" rel="stylesheet" />
+</head>
+<body ng-controller="mainController">
+    <div class="viewPanel">
+        <div>
+            <button onclick="addCar()">Add</button>
+            <button onclick="editCar()" ng-disabled="selectedCarId == null">Watch detail / Edit</button>
+        </div>
+        <div>
+            <table cellpadding="2" cellspacing="2" border="1">
+                <tr>
+                    <th>Id</th>
+                    <th>DriverId</th>
+                    <th>Description</th>
+                    <th>YearOfCreated</th>
+                </tr>
+                <tr ng-repeat="car in cars" ng-click="setSelected(car.Id)" ng-class="{selected: car.Id === selectedCarId}">
+                    <td>{{car.Id}}</td>
+                    <td>{{car.DriverId}}</td>
+                    <td>{{car.Description}}</td>
+                    <td>{{car.YearOfCreated}}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="viewPanel">
+        <div>
+            <button onclick="addDriver()">Add</button>
+            <button onclick="editDriver()" ng-disabled="selectedDriverId == null">Watch detail / Edit</button>
+        </div>
+        <div>
+            <table cellpadding="2" cellspacing="2" border="1">
+                <tr>
+                    <th>DriverId</th>
+                    <th>Name</th>
+                </tr>
+                <tr ng-repeat="driver in drivers" ng-click="setSelecteDriver(driver.Id)" ng-class="{selected: driver.Id === selectedDriverId}">
+                    <td>{{driver.Id}}</td>
+                    <td>{{driver.Name}}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
